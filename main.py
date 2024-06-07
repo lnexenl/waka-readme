@@ -362,6 +362,8 @@ def fetch_stats():
     attempts = 4
     statistic: dict[str, dict[str, Any]] = {}
     encoded_key = str(b64encode(bytes(str(wk_i.waka_key), "utf-8")), "utf-8")
+    logger.debug(encoded_key)
+    logger.debug(f"{str(wk_i.api_base_url).rstrip('/')}/v1/users/current/stats/{wk_i.time_range}")
     logger.debug(f"Pulling WakaTime stats from {' '.join(wk_i.time_range.split('_'))}")
     while attempts > 0:
         resp_message, fake_ua = "", cryptogenic.choice([str(fake.user_agent()) for _ in range(5)])
