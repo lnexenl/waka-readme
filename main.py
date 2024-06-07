@@ -376,6 +376,7 @@ def fetch_stats():
                 timeout=(30.0 * (5 - attempts)),
             )
         ).status_code != 200:
+            logger.debug(resp)
             resp_message += f" • {conn_info}" if (conn_info := resp.json().get("message")) else ""
         logger.debug(
             f"API response #{5 - attempts}: {resp.status_code} •" + f" {resp.reason}{resp_message}"
